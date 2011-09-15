@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -13,9 +12,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.sqs.AmazonSQS;
@@ -35,7 +31,7 @@ public class NotificationClientActivity extends ListActivity {
 
 	private static AmazonSQS simpleQueue = null;
 	private static List<com.amazonaws.services.sqs.model.Message> lastRecievedMessages = null;
-	public static final String QUEUE_URL = "https://queue.amazonaws.com/484583698755/testqueue"; 
+	public static final String QUEUE_URL = "https://queue.amazonaws.com/484583698755/anotherqueue"; 
 	public static final String MESSAGE_INDEX = "_message_index";
 	public static final String MESSAGE_ID = "_message_id";
 	public static BasicAWSCredentials credentials = null;	
@@ -120,7 +116,6 @@ public class NotificationClientActivity extends ListActivity {
     private void getOrders(){
         try
         {
-        	
 	        Log.v("getOrders", "into");
         	ReceiveMessageRequest req = new ReceiveMessageRequest(QUEUE_URL);
 	        Log.v("getOrders", "initialised req");
@@ -164,7 +159,7 @@ public class NotificationClientActivity extends ListActivity {
 		        Log.v("getOrders", "mb added to m_orders");
 	    		Log.v("getOrders:", "m_orders.size in loop:" + Integer.toString(m_orders.size())); 
 		        
-				deleteMessageFromQueue(m.getReceiptHandle());
+				//deleteMessageFromQueue(m.getReceiptHandle());
 		        Log.v("getOrders", "message deleted from queue");
 			}
 
